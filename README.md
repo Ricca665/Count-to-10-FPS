@@ -24,7 +24,6 @@ Either click on "code" on the top of this repo, click on download zip and extrac
 OR you can run the following in the terminal with git installed:
 ```
 git clone --depth=1 https://github.com/Ricca665/Count-to-10-FPS
-
 ```
 
 Enter into the newly cloned repo and open a terminal there
