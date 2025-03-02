@@ -1,7 +1,12 @@
-DELETE := rm
+ifeq ($(OS),Windows_NT)
+    DELETE := cmd /C rd /s /q
+else
+    DELETE := rm -rf
+endif
+
 clean:
 	@$(DELETE) dist build
-	@$(DELETE) dist build
+	@$(DELETE) *.spec
 
 game:
 	@pyinstaller --onefile --windowed --icon="icon.ico" main.py --name="game.exe" --clean
