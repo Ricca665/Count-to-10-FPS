@@ -2,17 +2,17 @@
 import pygame as pg
 import pygame.freetype
 from time import sleep
-from utils import render_text
+from utils import *
 
 import argparse
-import logging as lg
 
-lg.basicConfig(level=lg.DEBUG)
 
 #We check for a debug flag, in that case we enable it
 parser = argparse.ArgumentParser()
 parser.add_argument("--debug", help="Enable debug.", type=bool)
 args = parser.parse_args()
+
+debug = args.debug
 
 # Set window resolution to 1200 x 600
 screen = pg.display.set_mode((1200, 600)) 
@@ -22,21 +22,21 @@ pg.init()
 pg.font.init()
 
 GAME_FONT = pygame.freetype.SysFont("ARIAL.TTF", 24)
-if args.debug: lg.debug("Initialized")
+log("Initialized", False, debug, False)
 
 # Set title
 pg.display.set_caption('Click to 10 FPS') 
-if args.debug: lg.debug("Setted title")
+log("Setted title", False, debug, False)
 
 # Run
 running = True
-if args.debug: lg.debug("Now running...")
+log("Now running...", False, debug, False)
 
 fps = 60
 counter = 0
 
 clock = pg.time.Clock()
-if args.debug: lg.debug("Set clock")
+log("Setted clock", False, debug, False)
 
 red = (255, 0, 0)
 
@@ -44,7 +44,7 @@ ball_radius = 40
 ball_speed = [10, 10]
 ball_rect = pg.Rect(100 - ball_radius, 100 - ball_radius, ball_radius*2, ball_radius*2)
 
-if args.debug: lg.debug("Drawing ball...")
+log("Drawing ball...", False, debug, False)
 
 while running:
     screen.fill((0, 0, 0))
@@ -60,7 +60,7 @@ while running:
         if event.type == pg.MOUSEBUTTONDOWN: # In case we press the left mouse button we lower the fps
             counter += 1
             fps = fps-5
-            if args.debug: lg.debug(f"lowering fps to {fps}")
+            log("Lowering fps to: "+fps, False, debug, False)
 
     """
         The render_text function is found in the utils.py file
@@ -88,6 +88,6 @@ while running:
     clock.tick(fps)
 
  
-if args.debug: lg.warning(f"Exiting...")
+log("Exiting...", False, debug, True)
 
 pg.quit() # Quit game

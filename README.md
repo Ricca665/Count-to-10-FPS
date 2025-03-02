@@ -44,7 +44,7 @@ python main.py --debug True
 This will log info
 
 # TO DO LIST
-- [ ] Add the ability to easily do logging
+- [x] Add the ability to easily do logging
 - [ ] Include more compiling options
 - [ ] Include support for linux
 - [ ] Add more customization
