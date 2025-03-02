@@ -3,12 +3,16 @@ import logging as lg
 
 lg.basicConfig(level=lg.DEBUG)
 
-def render_text(screen, GAME_FONT, center, counter, fps):
+def render_fps(screen, GAME_FONT, center, counter, fps):
     screen.fill((0,0,0))
     GAME_FONT.render_to(screen, center, str(counter), (255, 255, 255))
     GAME_FONT.render_to(screen, (0,0), str(fps), (255, 255, 255))
     pg.display.flip()
 
+def render_text(screen, GAME_FONT, x, y, text, r, g, b):
+    screen.fill((0,0,0))
+    GAME_FONT.render_to(screen, (x, y), str(text), (r, g, b))
+    pg.display.flip()
 
 def log(text, skipDebugCheck, isDebugEnabled, isWarning):
     if isDebugEnabled or skipDebugCheck:

@@ -67,12 +67,12 @@ while running:
         Imported at the start of the script
     """
     if counter > 9: # In case counter is bigger than 10 we render it and then quickly close it
-        render_text(screen, GAME_FONT, center, counter, fps)
+        render_fps(screen, GAME_FONT, center, counter, fps)
         sleep(0.2)
         running = False
         break
     else:
-        render_text(screen, GAME_FONT, center, counter, fps)
+        render_fps(screen, GAME_FONT, center, counter, fps)
 
     """Ball bouncing script part"""
     ball_rect = ball_rect.move(ball_speed)

@@ -41,7 +41,7 @@ To use the debug mode, run:
 python main.py --debug True
 ```
 
-This will log info
+This will log info (check the wiki for more details on how to mod this "game")
 
 # TO DO LIST
 - [x] Add the ability to easily do logging
