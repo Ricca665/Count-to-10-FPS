@@ -38,7 +38,17 @@ counter = 0
 clock = pg.time.Clock()
 if args.debug: lg.debug("Set clock")
 
+red = (255, 0, 0)
+
+ball_radius = 40
+ball_speed = [10, 10]
+ball_rect = pg.Rect(100 - ball_radius, 100 - ball_radius, ball_radius*2, ball_radius*2)
+
+if args.debug: lg.debug("Drawing ball...")
+
 while running:
+    screen.fill((0, 0, 0))
+
     """Main function of the script"""
     events = pg.event.get() # Get events
     center = screen.get_rect().center # Get center of the screen to render counter
@@ -51,19 +61,31 @@ while running:
             counter += 1
             fps = fps-5
             if args.debug: lg.debug(f"lowering fps to {fps}")
-            clock.tick(fps)
 
-        """
-           The render_text function is found in the utils.py file
-           Imported at the start of the script
-        """
-        if counter > 9: # In case counter is bigger than 10 we render it and then quickly close it
-            render_text(screen, GAME_FONT, center, counter, fps)
-            sleep(0.2)
-            running = False
-            break
-        else:
-            render_text(screen, GAME_FONT, center, counter, fps)
+    """
+        The render_text function is found in the utils.py file
+        Imported at the start of the script
+    """
+    if counter > 9: # In case counter is bigger than 10 we render it and then quickly close it
+        render_text(screen, GAME_FONT, center, counter, fps)
+        sleep(0.2)
+        running = False
+        break
+    else:
+        render_text(screen, GAME_FONT, center, counter, fps)
+
+    """Ball bouncing script part"""
+    ball_rect = ball_rect.move(ball_speed)
+    if ball_rect.left <= 0 or ball_rect.right >= 1200:
+        ball_speed[0] = -ball_speed[0]
+    if ball_rect.top <= 0 or ball_rect.bottom >= 600:
+        ball_speed[1] = -ball_speed[1]
+        
+    pg.draw.circle(screen, red, ball_rect.center, ball_radius)
+
+    pg.display.flip()
+
+    clock.tick(fps)
 
  
 if args.debug: lg.warning(f"Exiting...")

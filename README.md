@@ -48,6 +48,6 @@ This will log info
 - [ ] Include more compiling options
 - [ ] Include support for linux
 - [ ] Add more customization
-
+- [x] Add bouncing ball to show the fps decreasing
 
 # Hope you enjoy!
